@@ -14,7 +14,7 @@ sourceFiles = process.argv.slice(2);
 printResult(validate(sourceFiles));
 
 function validate(fileNames) {
-  const errors = [];
+  let errors = [];
 
   debug(`got files: ${fileNames.join(', ')}`);
 
@@ -36,14 +36,15 @@ function validate(fileNames) {
       } catch (e) {
         debug(`parse failed ${fileName}, error:`, e);
 
-        const errMsg = [
-          chalk.red(`Error: ECMAScript 5 validate failed when parsing ${chalk.green.bold(fileName + '.formatted')} (${e.loc.line}, ${e.loc.column})`),
+        errors = [
+          chalk.black.bgRed('Error') +
+          chalk.red(`: ECMAScript 5 validate failed when parsing ${chalk.green.bold(fileName + '.formatted')} (${e.loc.line}, ${e.loc.column})`),
         ];
 
-        errMsg.push('');
+        errors.push('');
+        errors.push('');
 
-        errMsg.push('');
-        errMsg.push(codeFrameColumns(source, {
+        errors.push(codeFrameColumns(source, {
           start: e.loc,
         }, {
           highlightCode: true,
@@ -52,10 +53,6 @@ function validate(fileNames) {
           linesAbove: 10,
           linesBelow: 2,
         }));
-
-        errors.push(
-          new Error(errMsg.join('\n')),
-        );
       }
     }
   });
