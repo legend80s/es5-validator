@@ -1,7 +1,7 @@
 {
   "name": "es5-validator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Validate js source code against ES5. To avoid breaking you App by shipping ES6+ code to production silently",
   "main": "index.js",
   "scripts": {
     "test:es5": "node index ./es5.js",
