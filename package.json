@@ -1,0 +1,26 @@
+{
+  "name": "es5-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:es5": "node index ./es5.js",
+    "test:es6": "node index ./es6.js"
+  },
+  "bin": {
+    "es5-validator": "./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/code-frame": "^7.10.4",
+    "acorn": "^7.3.1",
+    "chalk": "^4.1.0",
+    "js-beautify": "^1.11.0"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1",
+    "git-commit-msg-linter": "^2.4.4"
+  }
+}
