@@ -1,6 +1,6 @@
 # es5-validator
 
-Validate js source code against ES5.
+Validate JS source code against ES5.
 
 ## Why it exits
 

@@ -74,6 +74,6 @@ function printResult(errors = []) {
   }
 
   console.log('');
-  console.log(chalk.cyan(`Give a star ❤️  if it helped you.`));
+  console.log(chalk.cyan(`Give a star ❤️  if it helped you https://github.com/legend80s/es5-validator.`));
   console.log('');
 }
