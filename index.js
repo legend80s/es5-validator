@@ -68,7 +68,7 @@ function printResult(errors = []) {
   if (errors.length === 0) {
     console.log(chalk.greenBright('[es5-validator] Congratulations! Your code is ES5 Compatible. It\'s ready to ship to production.'));
   } else {
-    console.log(chalk.redBright('[es5-validator] Your code is not ES5 Compatible. It\'s not ready to ship to production, otherwise it will break you App.'));
+    console.log(chalk.redBright('[es5-validator] Your code is not ES5 Compatible. It\'s not ready to ship to production, otherwise it will break you App on iOS 9 or iOS 10.'));
     console.log('');
     console.error(errors.join('\n'));
   }

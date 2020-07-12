@@ -1,6 +1,6 @@
 # es5-validator
 
-Validate JS source code against ES5.
+Validate JS source code against ES5 before shipping to production to make your code safe on iOS 9, iOS 10 or other ES6+ incompatible platforms.
 
 ## Use
 
