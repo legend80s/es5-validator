@@ -15,16 +15,21 @@ package.json
 ```json
 {
   "scripts": {
-    "lint:es5": "es5-validator dist/index.js"
+    "lint:es5": "es5-validator es6.js"
   }
 }
+```
+
+es6.js
+
+```js
+function func(foo = '') {}
+const bar = 1;
 ```
 
 ```sh
 npm run lint:es5
 ```
-
-If ES5 incompatible
 
 ![es5-validator-demo](https://raw.githubusercontent.com/legend80s/es5-validator/master/es5-validator-demo.jpg)
 
