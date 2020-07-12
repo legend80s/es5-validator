@@ -1,7 +1,7 @@
 {
   "name": "es5-validator",
   "version": "1.0.2",
-  "description": "Validate js source code against ES5. To avoid breaking you App by shipping ES6+ code to production silently",
+  "description": "Validate JS source code against ES5 to avoid breaking you App by shipping ES6+ code to production silently",
   "main": "index.js",
   "files": [
     "index.js"
@@ -13,7 +13,11 @@
   "bin": {
     "es5-validator": "./index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "validate ES5",
+    "validate against ECMAScript 5",
+    "es5-validator"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
