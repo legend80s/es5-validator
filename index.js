@@ -65,7 +65,9 @@ function printResult(errors = []) {
   console.log(chalk.italic(`NOTICE: It's hard to locate the problem when code is compressed, so the source code will be formatted before validate.`));
   console.log('');
 
-  if (errors.length === 0) {
+  const compatible = errors.length === 0;
+
+  if (compatible) {
     console.log(chalk.greenBright('[es5-validator] Congratulations! Your code is ES5 Compatible. It\'s ready to ship to production.'));
   } else {
     console.log(chalk.redBright('[es5-validator] Your code is not ES5 Compatible. It\'s not ready to ship to production, otherwise it will break you App on iOS 9 or iOS 10.'));
@@ -76,4 +78,6 @@ function printResult(errors = []) {
   console.log('');
   console.log(chalk.cyan(`Give a star ❤️  if it helped you https://github.com/legend80s/es5-validator.`));
   console.log('');
+
+  process.exit(compatible ? 0 : 1)
 }
