@@ -26,7 +26,7 @@ npm run lint:es5
 
 If ES5 incompatible
 
-![es5-validator-demo](https://raw.githubusercontent.com/legend80s/es5-validator/master/es5-validator-demo.png)
+![es5-validator-demo](https://raw.githubusercontent.com/legend80s/es5-validator/master/es5-validator-demo.jpg)
 
 [Demo repo](https://github.com/legend80s/es5-validator-demo).
 
