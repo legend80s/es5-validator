@@ -18,8 +18,12 @@
     "validate against ECMAScript 5",
     "es5-validator"
   ],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/legend80s/es5-validator.git"
+  },
+  "author": "legend80s",
+  "license": "MIT",
   "dependencies": {
     "@babel/code-frame": "^7.10.4",
     "acorn": "^7.3.1",
