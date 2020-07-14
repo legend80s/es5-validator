@@ -31,6 +31,19 @@ const bar = 1;
 npm run lint:es5
 ```
 
+Result:
+
+```javascript
+[es5-validator] Your code is not ES5 Compatible. It's not ready to ship to production, otherwise it will break you App on iOS 9 or iOS 10.
+
+Error: ECMAScript 5 validate failed when parsing es6.js.formatted (1, 18)
+
+
+> 1 | function func(foo = '') {}
+    |                  ^ Invalid ECMAScript 5 syntax
+  2 | const bar = 1;
+```
+
 ![es5-validator-demo](https://raw.githubusercontent.com/legend80s/es5-validator/master/es5-validator-demo.jpg)
 
 [Demo repo](https://github.com/legend80s/es5-validator-demo).
@@ -38,3 +51,7 @@ npm run lint:es5
 ## Why it exits
 
 To avoid breaking you App by shipping ES6+ code to production silently.
+
+---
+
+*Give a star ❤️  if it helped you https://github.com/legend80s/es5-validator.*
