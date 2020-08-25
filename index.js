@@ -44,7 +44,7 @@ function validate(fileNames) {
 
         errors = [
           chalk.black.bgRed('Error') +
-          chalk.red(`: ECMAScript 5 validate failed when parsing ${chalk.green.bold(fileName + '.formatted')} (${e.loc.line}, ${e.loc.column})`),
+          chalk.red(`: ECMAScript 5 validate failed when parsing ${chalk.green.bold(fileName + ' (formatted)')} (${e.loc.line}, ${e.loc.column})`),
         ];
 
         errors.push('');
