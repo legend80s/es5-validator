@@ -16,7 +16,13 @@ printResult(validate(sourceFiles));
 function validate(fileNames) {
   let errors = [];
 
-  debug(`got files: ${fileNames.join(', ')}`);
+  debug(`got files:`, fileNames);
+
+  if (!fileNames || !fileNames.length) {
+    console.log('[es5-validator] No file to validate: $ es5-validator FILE_TO_VALIDATE.js');
+
+    process.exit(0);
+  }
 
   fileNames.forEach(fileName => {
     if (extname(fileName) === '.js') {
