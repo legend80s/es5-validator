@@ -7,7 +7,7 @@ The earlier you find ES5 incompatibility errors, the earlier you can fix them.
 ## Use
 
 ```sh
-npx es5-validator FILE_TO_VALIDATE.js
+npx es5-validator FILE_TO_VALIDATE.js [https://xxx/xx.js]
 ```
 
 ### Or use as script
@@ -59,5 +59,9 @@ Error: ECMAScript 5 validate failed when parsing es6.js.formatted (1, 18)
 To avoid breaking you App by shipping ES6+ code to production silently.
 
 ---
+
+## Todo
+
+- [x] Validate remote js https://cdn.jsdelivr.net/npm/js-pinyin/index.js
 
 *Give a star ❤️  if it helped you https://github.com/legend80s/es5-validator.*
