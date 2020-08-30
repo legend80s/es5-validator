@@ -20,10 +20,11 @@ async function main() {
 main();
 
 /**
- * @param {string[]} filePaths
+ * @param {{ errors: string[]; compressed: boolean; }} filePaths
  */
 async function validate(filePaths) {
   let errors = [];
+  let compressed = false;
 
   debug(`got files:`, filePaths);
 
@@ -52,9 +53,13 @@ async function validate(filePaths) {
 
     debug(`rawSource:`, rawSource);
 
-    const source = beautify(rawSource, { indent_size: 2, space_in_empty_paren: true })
+    compressed = isCompressed(rawSource);
 
-    debug(`source after beautified:`, source);
+    const source = compressed ?
+      beautify(rawSource, { indent_size: 2, space_in_empty_paren: true }) :
+      rawSource;
+
+    compressed && debug(`source after beautified:`, source);
 
     try {
       acorn.parse(source, {
@@ -67,7 +72,12 @@ async function validate(filePaths) {
 
       errors = [
         chalk.black.bgRed('Error') +
-        chalk.red(`: ECMAScript 5 validate failed when parsing ${chalk.green.bold(fileName + ' (formatted)')} (${e.loc.line}, ${e.loc.column})`),
+        chalk.red(
+          ': ECMAScript 5 validate failed when parsing',
+          `${chalk.green.bold(fileName +
+            (compressed || isRemoteFile(fileName) ? ` (formatted) (${e.loc.line}, ${e.loc.column})` : `:${e.loc.line}:${e.loc.column}`)
+          )}`
+        ),
       ];
 
       errors.push('');
@@ -85,10 +95,10 @@ async function validate(filePaths) {
     }
   }));
 
-  return errors;
+  return { errors, compressed };
 }
 
-function printResult(errors = []) {
+function printResult({ errors = [], compressed = false } = {}) {
   console.log('');
 
   const compatible = errors.length === 0;
@@ -96,8 +106,10 @@ function printResult(errors = []) {
   if (compatible) {
     console.log(chalk.greenBright('[es5-validator] Congratulations! Your code is ES5 Compatible. It\'s ready to ship to production.'));
   } else {
-    console.log(chalk.italic(`[es5-validator] NOTICE: It's hard to locate the problem when code is compressed, so it will be formatted before validation.`));
-    console.log('');
+    if (compressed) {
+      console.log(chalk.italic(`[es5-validator] NOTICE: It's hard to locate the problem when code is compressed, so it will be formatted before validation.`));
+      console.log('');
+    }
 
     console.log(chalk.redBright('[es5-validator] Your code is not ES5 Compatible. It\'s not ready to ship to production, otherwise it will break you App on iOS 9 or iOS 10.'));
     console.log('');
@@ -138,21 +150,11 @@ async function fetchFileContent(filePath) {
 //   }
 // }
 
-
-// let data;
-
-// console.log('in getRequest');
-
-// res
-//   .on('data', d => {
-//     console.log('data:', d);
-//     data += d;
-//   })
-//   .on('end', () => {
-//     console.log('end');
-//     resolve(data);
-//   })
-//   .on('error', error => {
-//     console.log('error:', error);
-//     reject(error);
-//   })
+/**
+ *
+ * @param {string} source
+ * @returns {boolean}
+ */
+function isCompressed(source) {
+  return source && source.split('\n').some(line => line.trim().length > 200);
+}
