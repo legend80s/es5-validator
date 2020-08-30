@@ -7,7 +7,7 @@ The earlier you find ES5 incompatibility errors, the earlier you can fix them.
 ## Use
 
 ```sh
-npx es5-validator FILE_TO_VALIDATE.js [https://xxx/xx.js]
+npx es5-validator FILE_TO_VALIDATE.js [https://some-cdn/es.min.js]
 ```
 
 ### Or use as script

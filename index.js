@@ -111,7 +111,6 @@ function printResult(errors = []) {
   process.exit(compatible ? 0 : 1)
 }
 
-
 /**
  * @param {string} path
  */
