@@ -10,7 +10,7 @@ The earlier you find ES5 incompatibility errors, the earlier you can fix them.
 npx es5-validator FILE_TO_VALIDATE.js [https://some-cdn/es.min.js]
 ```
 
-### Or use as script
+### Or Use as Script
 
 ```sh
 npm i es5-validator --save-dev
@@ -59,6 +59,12 @@ Error: ECMAScript 5 validate failed when parsing es6.js.formatted (1, 18)
 To avoid breaking you App by shipping ES6+ code to production silently.
 
 ---
+
+## Features
+
+- [x] Validate local JS file.
+- [x] Validate remote JS file.
+- [ ] Validate inline source code directly.
 
 ## Todo
 
