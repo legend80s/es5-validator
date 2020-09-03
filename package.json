@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "debug": "^4.1.1",
-    "git-commit-msg-linter": "^2.4.4"
+    "git-commit-msg-linter": "^2.6.0"
   }
 }
