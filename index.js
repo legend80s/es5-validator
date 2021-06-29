@@ -12,6 +12,7 @@ const debug = require('debug')('es5-validator');
 // const debug = console.log;
 
 sourceFiles = process.argv.slice(2);
+const silent = process.env.SILENT === "true";
 
 async function main() {
   printResult(await validate(sourceFiles));
@@ -120,7 +121,7 @@ function printResult({ errors = [], compressed = false } = {}) {
   console.log(chalk.cyan(`Give a star ❤️  if it helped you https://github.com/legend80s/es5-validator.`));
   console.log('');
 
-  process.exit(compatible ? 0 : 1)
+  process.exit((compatible || silent) ? 0 : 1)
 }
 
 /**
