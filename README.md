@@ -7,7 +7,7 @@ The earlier you find ES5 incompatibility errors, the earlier you can fix them.
 ## Use
 
 ```sh
-npx es5-validator FILE_TO_VALIDATE.js [https://some-cdn/es.min.js]
+npx es5-validator FILE_TO_VALIDATE1.js [FILE_TO_VALIDATE2.js] [https://some-cdn/es.min.js]
 ```
 
 ### Or Use as Script
@@ -63,11 +63,12 @@ To avoid breaking you App by shipping ES6+ code to production silently.
 ## Features
 
 - [x] Validate local JS file.
-- [x] Validate remote JS file.
+- [x] Validate remote JS file. For example: `npx es5-validator https://cdn.jsdelivr.net/npm/js-pinyin/index.js`.
+- [x] Validate multiple JS files concurrently. For example: `npx es5-validator es6-1.js es6-2.js`.
 - [ ] Validate inline source code directly.
 
 ## Todo
 
-- [x] Validate remote js https://cdn.jsdelivr.net/npm/js-pinyin/index.js
+- [x] Validate remote js. `npx es5-validator https://cdn.jsdelivr.net/npm/js-pinyin/index.js`.
 
 *Give a star ❤️  if it helped you https://github.com/legend80s/es5-validator.*
