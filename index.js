@@ -2,10 +2,13 @@
 
 const { extname } = require('path');
 const { readFileSync } = require('fs')
+
 const acorn = require('acorn');
 const chalk = require('chalk');
 const { codeFrameColumns } = require('@babel/code-frame');
 const beautify = require('js-beautify').js;
+const { isMinified } = require('is-minified-performant');
+
 const { fetch } = require('./fetch');
 
 const debug = require('debug')('es5-validator');
@@ -157,5 +160,5 @@ async function fetchFileContent(filePath) {
  * @returns {boolean}
  */
 function isCompressed(source) {
-  return source && source.split('\n').some(line => line.trim().length > 200);
+  return isMinified(source)
 }
