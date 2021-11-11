@@ -58,7 +58,20 @@ Error: ECMAScript 5 validate failed when parsing es6.js.formatted (1, 18)
 
 To avoid breaking you App by shipping ES6+ code to production silently.
 
----
+## How it works
+
+Detect syntax error by parsing source code aganest ES5 using acorn. For more details, you can read the [code](https://github.com/legend80s/es5-validator/blob/master/index.js#L66).
+
+> When encountering a syntax error, the parser will raise a `SyntaxError` object with a meaningful message. The error object will have a `pos` property that indicates the string offset at which the error occurred, and a `loc` object that contains a `{line, column}` object referring to that same position.
+> - https://www.npmjs.com/package/acorn
+
+```js
+acorn.parse(source, {
+  ecmaVersion: 5,
+});
+```
+
+💡 Notice: Only the syntax can be detected. Methods introduced by ES6+ wont be reported. For example `Object.assign` will not be reported but `spread operator` will.
 
 ## Features
 
