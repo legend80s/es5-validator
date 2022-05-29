@@ -1,5 +1,8 @@
 # es5-validator
 
+<img src="https://visitor-badge.glitch.me/badge?page_id=legend80s/es5-validator&left_color=blue&right_color=green" alt="visitor count" />
+
+
 > Validate JS source code against ES5 and report possible syntax errors before shipping to production to make your code safe on iOS 9, iOS 10 or other ES6+ incompatible platforms.
 
 The earlier you find ES5 incompatibility errors, the earlier you can fix them.
