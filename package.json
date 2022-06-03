@@ -14,8 +14,8 @@
     "pub:minor": "npm version minor",
     "pub:patch": "npm version patch",
     "test": "npm run test:es5 && npm run test:es6",
-    "test:es5": "node index ./es5.js",
-    "test:es6": "SILENT=true node index ./es6.js"
+    "test:es5": "node index ./test/es5.js",
+    "test:es6": "SILENT=true node index ./test/es6.js"
   },
   "bin": {
     "es5-validator": "./index.js"
