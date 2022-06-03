@@ -9,13 +9,11 @@ const { codeFrameColumns } = require('@babel/code-frame');
 const beautify = require('js-beautify').js;
 const { isMinified } = require('is-minified-performant');
 
-const { fetch } = require('./fetch');
+const { debug } = require('./helper/debug');
+const { fetch } = require('./helper/fetch');
 
 const args = process.argv.slice(2);
 const silent = process.env.SILENT === "true";
-const debugging = process.env.DEBUG === 'true';
-
-const debug = debugging ? console.log.bind(console, '[es5-validator]') : () => {};
 
 async function main() {
   const inline = args.includes('--inline')

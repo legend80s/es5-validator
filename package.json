@@ -13,7 +13,7 @@
     "pub:major": "npm version major",
     "pub:minor": "npm version minor",
     "pub:patch": "npm version patch",
-    "test": "npm run test:es5 && npm run test:es6",
+    "test": "npm run test:es5 && npm run test:es6 && npm run test:inline",
     "test:es5": "node index ./test/es5.js",
     "test:inline": "SILENT=true node index --inline \"function func(foo=''){};\nconst bar=1;\"",
     "test:es6": "SILENT=true node index ./test/es6.js"

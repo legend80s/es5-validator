@@ -1,7 +1,7 @@
 const http = require("http");
 const https = require("https");
 
-const debug = require('debug')('es5-validator:fetch');
+const { debug } = require('./debug');
 
 /**
  * @param {string} url
