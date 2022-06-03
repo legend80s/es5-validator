@@ -15,6 +15,7 @@
     "pub:patch": "npm version patch",
     "test": "npm run test:es5 && npm run test:es6",
     "test:es5": "node index ./test/es5.js",
+    "test:inline": "SILENT=true node index --inline \"function func(foo=''){};\nconst bar=1;\"",
     "test:es6": "SILENT=true node index ./test/es6.js"
   },
   "bin": {
@@ -35,7 +36,6 @@
     "@babel/code-frame": "^7.10.4",
     "acorn": "^7.3.1",
     "chalk": "^4.1.0",
-    "debug": "^4.1.1",
     "is-minified-performant": "^1.0.2",
     "js-beautify": "^1.11.0"
   },

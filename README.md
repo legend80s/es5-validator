@@ -81,7 +81,7 @@ acorn.parse(source, {
 - [x] Validate local JS file.
 - [x] Validate remote JS file. For example: `npx es5-validator https://cdn.jsdelivr.net/npm/js-pinyin/index.js`.
 - [x] Validate multiple JS files concurrently. For example: `npx es5-validator es6-1.js es6-2.js`.
-- [ ] Validate inline source code directly.
+- [x] Validate inline source code directly. For example: `npx es5-validator --inline "const bar = 1;"`.
 
 ## Todo
 

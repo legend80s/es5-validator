@@ -11,28 +11,38 @@ const { isMinified } = require('is-minified-performant');
 
 const { fetch } = require('./fetch');
 
-const debug = require('debug')('es5-validator');
-// const debug = console.log;
-
-sourceFiles = process.argv.slice(2);
+const args = process.argv.slice(2);
 const silent = process.env.SILENT === "true";
+const debugging = process.env.DEBUG === 'true';
+
+const debug = debugging ? console.log.bind(console, '[es5-validator]') : () => {};
 
 async function main() {
-  printResult(await validate(sourceFiles));
+  const inline = args.includes('--inline')
+
+  let filepaths = args;
+
+  if (inline) {
+    filepaths = filepaths.filter((fp) => !fp.startsWith('--'))
+  }
+
+  printResult(await validate(filepaths, { inline }));
 }
 
 main();
 
 /**
- * @param {{ errors: string[]; compressed: boolean; }} filePaths
+ * @param {string[]} filePaths
+ * @param {{ inline: boolean; }} options
+ * @returns {Promise<{ errors: string[]; compressed: boolean; }>}
  */
-async function validate(filePaths) {
+async function validate(filePaths, { inline }) {
   let errors = [];
   let compressed = false;
 
   debug(`got files:`, filePaths);
 
-  const jsFilePaths = filePaths.filter(path => {
+  const jsFilePaths = inline ? filePaths : filePaths.filter(path => {
     if (extname(path) === '.js') {
       return true;
     }
@@ -41,21 +51,21 @@ async function validate(filePaths) {
   });
 
   if (!jsFilePaths || !jsFilePaths.length) {
-    console.log('[es5-validator] No file to validate: $ es5-validator FILE_1_TO_VALIDATE.js FILE_2_TO_VALIDATE.js');
+    console.warn('[es5-validator] No file to validate: $ es5-validator FILE_1_TO_VALIDATE.js FILE_2_TO_VALIDATE.js');
 
     process.exit(0);
   }
 
   await Promise.all(jsFilePaths.map(async fileName => {
-    debug(`validate es5 for ${fileName}`);
+    debug(`validate es5 for "${fileName}"`);
 
-    const rawSource = await fetchFileContent(fileName).catch(error => {
+    const rawSource = inline ? fileName : await fetchFileContent(fileName).catch(error => {
       console.error('fetchFileContent', error);
 
       process.exit(1);
     });
 
-    debug(`rawSource:`, rawSource);
+    debug(`rawSource:`, `"${rawSource}"`);
 
     compressed = isCompressed(rawSource);
 
@@ -115,7 +125,7 @@ function printResult({ errors = [], compressed = false } = {}) {
       console.log('');
     }
 
-    console.log(chalk.redBright('[es5-validator] Your code is not ES5 Compatible. It\'s not ready to ship to production, otherwise it will break you App on iOS 9 or iOS 10.'));
+    console.log(chalk.redBright('[es5-validator] Your code is not ES5 Compatible. It\'s not ready to ship to production, otherwise it will break you App on Android 4+ or iOS 8+.'));
     console.log('');
     console.error(errors.join('\n'));
   }
